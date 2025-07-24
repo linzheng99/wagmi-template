@@ -4,9 +4,11 @@ import { Inter } from 'next/font/google'
 import { headers } from 'next/headers'
 import { type ReactNode } from 'react'
 import { cookieToInitialState } from 'wagmi'
+import { ThemeProvider } from "@/components/theme-provider"
 
 import { getConfig } from '../wagmi'
 import { Providers } from '../components/providers'
+import { Button } from '@/components/ui/button';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,9 +23,16 @@ export default function RootLayout(props: { children: ReactNode }) {
     headers().get('cookie'),
   )
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <Providers initialState={initialState}>{props.children}</Providers>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Providers initialState={initialState}>{props.children}</Providers>
+        </ThemeProvider>
       </body>
     </html>
   )
