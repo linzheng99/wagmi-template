@@ -2,8 +2,8 @@ import { erc20Abi } from "viem";
 import { useChainId, useReadContract } from "wagmi";
 
 export function ReadContractData() {
-  const ZenStakeToken = '0xb3E14926cdC045A8E7769053669189173cF3292a'
-  const ZENTokenERC20 = '0x409E0A3337f0f7583e63Ae6af186d30Aac0d4627'
+  const ZenStakeToken = process.env.NEXT_PUBLIC_ZEN_STAKE_ADDRESS as `0x${string}`;
+  const ZENTokenERC20 = process.env.NEXT_PUBLIC_ZEN_ERC20_ADDRESS as `0x${string}`;
   return (
     <div>
       <ZenTokenERCInfo address={ZENTokenERC20} />
